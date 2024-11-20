@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Braille Converter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Home Page -->
+  <div id="home-page" class="home-page">
+    <img src="https://static.thenounproject.com/png/412511-200.png" alt="Home Logo" />
+    <h1>Welcome to the Braille Converter</h1>
+    <button onclick="goToBrailleConverter()">Get Started</button>
+  </div>
+
+  <!-- Braille Converter Page -->
+  <div id="braille-converter-page" style="display: none;">
+    <!-- Header -->
+    <div class="header">
+      <img src="https://static.thenounproject.com/png/412511-200.png" alt="Home Logo" onclick="goHome()" />
+      <span>Braille Converter</span>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <div class="input-container">
+        <label for="text-input">Enter Text:</label>
+        <input type="text" id="text-input" placeholder="Type here..." oninput="updateBraille()" />
+      </div>
+      <div class="input-container">
+        <label for="braille-output">Converted Braille:</label>
+        <textarea id="braille-output" rows="5" readonly></textarea>
+      </div>
+      <div>
+        <button onclick="saveText()">Save</button>
+        <button onclick="uploadFile()">Upload</button>
+        <button onclick="printText()">Print</button>
+        <button onclick="startVoiceCommand()">Voice Command</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const brailleMap = {
+      a: "⠁", b: "⠃", c: "⠉", d: "⠙", e: "⠑", f: "⠋",
+      g: "⠛", h: "⠓", i: "⠊", j: "⠚", k: "⠅", l: "⠇",
+      m: "⠍", n: "⠝", o: "⠕", p: "⠏", q: "⠟", r: "⠗",
+      s: "⠎", t: "⠞", u: "⠥", v: "⠧", w: "⠺", x: "⠭",
+      y: "⠽", z: "⠵", " ": " ",
+    };
+
+    // Convert text to Braille
+    function convertToBraille(input) {
+      return input
+        .toLowerCase()
+        .split("")
+        .map((char) => brailleMap[char] || char)
+        .join(" ");
+    }
+
+    // Update Braille Output
+    function updateBraille() {
+      const textInput = document.getElementById("text-input").value;
+      const brailleText = convertToBraille(textInput);
+      document.getElementById("braille-output").value = brailleText;
+    }
+
+    // Navigate to Braille Converter Page
+    function goToBrailleConverter() {
+      document.getElementById("home-page").style.display = "none";
+      document.getElementById("braille-converter-page").style.display = "block";
+    }
+
+    // Home navigation
+    function goHome() {
+      document.getElementById("braille-converter-page").style.display = "none";
+      document.getElementById("home-page").style.display = "flex";
+    }
+
+    // Save Braille text
+    function saveText() {
+      const brailleOutput = document.getElementById("braille-output").value;
+      if (brailleOutput) {
+        localStorage.setItem("brailleText", brailleOutput);
+        alert("Braille text saved!");
+      } else {
+        alert("No Braille text to save.");
+      }
+    }
+
+    // Upload File
+    function uploadFile() {
+      alert("Upload feature is not implemented yet.");
+    }
+
+    // Print Braille text
+    function printText() {
+      const brailleOutput = document.getElementById("braille-output").value;
+      if (brailleOutput) {
+        const newWindow = window.open("", "", "width=600,height=400");
+        newWindow.document.write(`<pre>${brailleOutput}</pre>`);
+        newWindow.print();
+      } else {
+        alert("No Braille text to print.");
+      }
+    }
+
+    // Start Voice Command (Mock Implementation)
+    function startVoiceCommand() {
+      alert("Voice Command feature is not implemented yet.");
+    }
+
+    // In your main JavaScript file (e.g., `app.js`)
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(registration => {
+        console.log('Service Worker registered:', registration);
+      })
+      .catch(error => {
+        console.log('Service Worker registration failed:', error);
+      });
+  });
+}
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+  }
+  
+  /* Home Page Styling */
+  .home-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #007BFF;
+    color: white;
+  }
+  .home-page h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  .home-page button {
+    background-color: white;
+    color: #007BFF;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .home-page button:hover {
+    background-color: #f5f5f5;
+  }
+  .home-page img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 30px;
+  }
+  
+  /* Header Styling for Braille Converter */
+  .header {
+    background-color: #007BFF;
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+  .header img {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  
+  /* Content Styling for Braille Converter */
+  .content {
+    padding: 20px;
+  }
+  .input-container {
+    margin-bottom: 15px;
+  }
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+  
